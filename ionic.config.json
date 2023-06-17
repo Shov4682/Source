@@ -1,0 +1,8 @@
+{
+  "name": "Closet Db",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react",
+  "id": "0217983a"
+}

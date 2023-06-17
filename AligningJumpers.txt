@@ -1,0 +1,13 @@
+if End_B=0.Add_Jumper_Temp_Table Then
+    if R_End_A.Add_Jumper_Temp_Table = Any Value in Column End_B.Fiber_Jumper_Table
+      DoCmd.OpenQuery "New_Jumper_Append_Query", acViewNormal, acEdit
+    Else
+      DoCmd.OpenQuery "New_Jumper_Transposed_Append_Query", acViewNormal, acEdit
+    End If
+ Else
+    If R_End_B.Add_Jumper_Temp_Table = Any Value in Column End_A.Fiber_Jumper_Table
+      DoCmd.OpenQuery "New_Jumper_Append_Query", acViewNormal, acEdit
+    Else
+      DoCmd.OpenQuery "New_Jumper_Transposed_Append_Query", acViewNormal, acEdit
+    End If
+End If
