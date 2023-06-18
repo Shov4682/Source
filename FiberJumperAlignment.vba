@@ -94,6 +94,9 @@ If Not IsNull(Transpose_First_Ascending_Jumper_ID) Then
     Next_Jumper_ID = Nz(DLookup("Fiber_Jumper_Table_PKey", "Transpose_Next_Ascending_Jumper_Query", 1 = 1))
     Next_End_A = Nz(DLookup("End_A", "Transpose_Next_Ascending_Jumper_Query", 1 = 1))
     Next_End_B = Nz(DLookup("End_B", "Transpose_Next_Ascending_Jumper_Query", 1 = 1))
+    Next_End_A_Switch_Port = Nz(Dlookup("End_A_Switch_Port", "Transpose_Next_Ascending_Jumper_Query", 1 = 1))
+    Next_End_B_Switch_Port = Nz(Dlookup("End_B_Switch_Port", "Transpose_Next_Ascending_Jumper_Query", 1 = 1))
+    Next_Path_ID = Nz(Dlookup("Fiber_Path_ID", "Transpose_Next_Ascending_Jumper_Query", 1 = 1))
         
     Next_Jumper_ID_Combo.Value = Next_Jumper_ID
     Next_End_A_Combo.Value = Next_End_A
@@ -105,6 +108,13 @@ If Not IsNull(Transpose_First_Ascending_Jumper_ID) Then
     DoCmd.OpenQuery "Transpose_Next_Jumper_Update_Query", acViewNormal, acEdit
     DoCmd.OpenQuery "Next_Transposed_Jumper_Update_Query", acViewNormal, acEdit
     DoCmd.SetWarnings True
+
+
+
+    IF End_A_Switch_Port > 0 then
+      DoCmd.SetWarnings False
+      DoCmd.OpenQuery "End_A_Switch_Port_Update_Query", acViewNormal, acEdit
+      DoCmd.SetWarnings True
 
   Loop Until (IsNull(Next_Jumper_ID) Or Next_Jumper_ID = 0)
 End If
@@ -186,14 +196,16 @@ If Next_Jumper_ID = 0 Then Exit Do
   DoCmd.SetWarnings True
 Loop Until (IsNull(Next_Jumper_ID) Or Next_Jumper_ID = 0)
 
+'=======================
 End_A_Switch_Port = Nz(Dlookup("End_A_Switch_Port", "Add_Jumper_Temp_Table", 1 = 1))
 End_B_Switch_Port = Nz(Dlookup("End_B_Switch_Port", "Add_Jumper_Temp_Table", 1 = 1))
-
+Next_Path_ID = Nz(Dlookup("Fiber_Path_ID", "Next_Jumper_Table", 1 = 1))
 
 IF End_A_Switch_Port > 0 then
     DoCmd.SetWarnings False
     DoCmd.OpenQuery "End_A_Switch_Port_Update_Query", acViewNormal, acEdit
     DoCmd.SetWarnings True
+
 End If
 
 IF End_B_Switch_Port > 0 Then 
