@@ -111,11 +111,12 @@ If Not IsNull(Transpose_First_Ascending_Jumper_ID) Then
 
 
 
+
     IF End_A_Switch_Port > 0 then
       DoCmd.SetWarnings False
       DoCmd.OpenQuery "End_A_Switch_Port_Update_Query", acViewNormal, acEdit
       DoCmd.SetWarnings True
-
+    End If
   Loop Until (IsNull(Next_Jumper_ID) Or Next_Jumper_ID = 0)
 End If
 
