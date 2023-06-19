@@ -214,6 +214,8 @@ IF End_B_Switch_Port > 0 Then
     DoCmd.OpenQuery "End_B_Switch_Port_Update_Query", acViewNormal, acEdit
     DoCmd.SetWarnings True
 End If
+test 2
+
 
 
 
